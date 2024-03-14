@@ -47,4 +47,4 @@ def get_uv_index(lat, lng):
     return data['result']['uv']
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host = '0.0.0.0',threaded = True)
