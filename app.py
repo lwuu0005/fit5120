@@ -4,12 +4,10 @@ import pandas as pd
 
 app = Flask(__name__)
 
-# 添加悉尼的地理信息
 city_coords = {
     'Melbourne': (-37.8136, 144.9631),
     'Geelong': (-38.1499, 144.3617),
     'Sydney': (-33.8688, 151.2093),
-    # 添加更多城市及其经纬度
 }
 
 @app.route('/')
@@ -37,7 +35,7 @@ def get_uv():
 def get_uv_index(lat, lng):
     url = "https://api.openuv.io/api/v1/uv"
     headers = {
-        "x-access-token": "openuv-a1ifdrltqqnr1b-io",
+        "x-access-token": "",
         "Content-Type": "application/json"
     }
     params = {
