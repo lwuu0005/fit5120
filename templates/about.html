@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>About Wild Animals</h1>
+    <p>Wild animals are animals that live in their natural habitat, without direct human intervention. They can be found in forests, mountains, deserts, and many other environments. Protecting wild animals and their habitats is crucial for maintaining biodiversity and ecological balance.</p>
+    <a href="{{ url_for('home') }}"><button>Go Back to Home</button></a>
+
+    <div>
+        <canvas id="uvChart"></canvas>
+    </div>
+
+    <script>
+        // 从 Flask 传递过来的数据
+        const chartData = {{ chart_data | safe }};
+
+        // 解析数据用于图表
+        const labels = chartData.map(data => data.LGA);
+        const uvIndex = chartData.map(data => data.uv_index);
+
+        // 图表配置
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'UV Index',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: uvIndex,
+            }]
+        };
+
+        // 初始化图表
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {}
+        };
+
+        // 创建图表实例
+        const uvChart = new Chart(
+            document.getElementById('uvChart'),
+            config
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Welcome to the Home Page</h1>
+    <form id="uvForm">
+        <label for="city">Select a city:</label>
+        <select id="city" name="city">
+            {% for city in cities %}
+                <option value="{{ city }}">{{ city }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Get UV Index</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#uvForm').submit(function(event) {
+                event.preventDefault();
+                var city = $('#city').val();
+                $.post('/get_uv', {city: city}, function(data) {
+                    $('#result').html('UV Index for ' + city + ': ' + data.uv_index);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
