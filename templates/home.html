@@ -2,31 +2,59 @@
 <html>
 <head>
     <title>Home</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../static/css/css.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../static/js/header.js"></script>
+
+
 </head>
 <body>
-    <h1>Welcome to the Home Page</h1>
-    <form id="uvForm">
-        <label for="city">Select a city:</label>
-        <select id="city" name="city">
-            {% for city in cities %}
-                <option value="{{ city }}">{{ city }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Get UV Index</button>
-    </form>
-    <div id="result"></div>
 
-    <script>
-        $(document).ready(function() {
-            $('#uvForm').submit(function(event) {
-                event.preventDefault();
-                var city = $('#city').val();
-                $.post('/get_uv', {city: city}, function(data) {
-                    $('#result').html('UV Index for ' + city + ': ' + data.uv_index);
-                });
-            });
-        });
-    </script>
+<header>
+    <div class="inner">
+        <div class="logo"><img src="../static/img/icon.png" alt="logo"></div>
+        <div class="burger"></div>
+        <nav>
+            <a class="active" href="#">Home</a>
+            <a href="#">pages1</a>
+            <a href="#">pages2</a>
+            <a href="#">pages3</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div id="slider" data-slide="0">
+    <div id="slider">
+
+        <div class="slider-inner">
+            <div id="slider-content">
+                <div class="meta">Species</div>
+                <h2 id="slide-title">Amur <br>Leopard</h2>
+                <span data-slide-title="0">Amur <br>Leopard</span>
+                <span data-slide-title="1">Asiatic <br>Lion</span>
+                <span data-slide-title="2">Siberian <br>Tiger</span>
+                <span data-slide-title="3">Brown <br>Bear</span>
+                <div class="meta">Status</div>
+                <div id="slide-status">Critically Endangered</div>
+                    <span data-slide-status="0">Critically Endangered - Expected to disappear in 10 years</span>
+                    <span data-slide-status="1">Endangered - Expected to disappear in 20 years</span>
+                    <span data-slide-status="2">Endangered - Expected to disappear in 15 years</span>
+                    <span data-slide-status="3">Least Concern - Not expected to disappear in the foreseeable future</span>
+            </div>
+        </div>
+
+        <div id="pagination">
+            <button class="active" data-slide="0"></button>
+            <button data-slide="1"></button>
+            <button data-slide="2"></button>
+            <button data-slide="3"></button>
+        </div>
+
+    </div>
+</main>
+
 </body>
 </html>
